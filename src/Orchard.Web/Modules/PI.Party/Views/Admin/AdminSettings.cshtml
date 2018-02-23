@@ -1,0 +1,13 @@
+﻿@using Orchard.ContentManagement
+@{
+    Layout.Title = T("Settings").ToString();
+}
+
+@using (Html.BeginFormAntiForgeryPost())
+{
+    @Html.ValidationSummary()
+    <fieldset>
+        <h2>Click the button below to execute latest changes to party database</h2>
+        <button class="primaryAction" type="submit">@T("Execute Sql Script")</button>
+    </fieldset>
+}

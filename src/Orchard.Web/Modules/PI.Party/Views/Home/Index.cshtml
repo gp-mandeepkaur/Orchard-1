@@ -1,0 +1,73 @@
+﻿
+@{
+    Style.Require("jQxBase");
+    Style.Require("PIParty");
+    Script.Require("jQuery").AtHead();
+    Script.Require("jQxCore").AtFoot();
+    Script.Require("jQxWindow").AtFoot();
+    Script.Require("jQxData").AtFoot();
+    Script.Require("jQxButtons").AtFoot();
+    Script.Require("jQxScrollbar").AtFoot();
+    Script.Require("jQxMenu").AtFoot();
+    Script.Require("jQxDropDown").AtFoot();
+    Script.Require("jQxListBox").AtFoot();
+    Script.Require("jQxNumberInput").AtFoot();
+    Script.Require("jQxInput").AtFoot();
+    Script.Require("jQxGrid").AtFoot();
+    Script.Require("jQxSelection").AtFoot();
+    Script.Require("jQxToolTip").AtFoot();
+    Script.Require("jQxGridEdit").AtFoot();
+    Script.Require("jqxLoader").AtFoot();
+    Script.Require("jqxGrid.Columnresize").AtFoot();
+    Script.Require("jQxGrid.Pager").AtFoot();
+    Script.Require("jQxGrid.Sort").AtFoot();
+    Script.Require("jQxGrid.Filter").AtFoot();
+    Script.Require("jQxDateTimeInput").AtFoot();
+    Script.Require("jQxCalendar").AtFoot();
+    Script.Require("CommonMethods").AtFoot();
+    Script.Require("Home").AtFoot();
+}
+
+@Html.AntiForgeryToken()
+ 
+ 
+    <script type="text/javascript">
+        var isAuthorisedToMap = '@ViewBag.Authorized';
+    </script>
+   
+<div id="partyUserList">
+</div>
+
+
+<div id="popupWindow" class="noDisplay">
+    <div id="popupWindowHeader">
+        Edit Account Number
+    </div>
+
+    <div id="popupWindowContent" class="mt-15">
+        <div class="col-sm-12 break-word">
+            <div class="col-sm-5"><label><b>First Name:</b></label></div>
+            <div class="col-sm-7"><p id="firstName"></p></div>
+            <div class="col-sm-5"><label><b>Last Name:</b></label></div>
+            <div class="col-sm-7"><p id="lastName"></p></div>
+            <div class="col-sm-5"><label><b>Email:</b></label></div>
+            <div class="col-sm-7"><p id="email"></p></div>
+            <div class="col-sm-5"><label><b>Account Number:</b></label></div>
+            <div class="col-sm-7"><p id="accountNumber"></p></div>
+            <div class="col-sm-12 text-center mt-15">
+                <input class="text-center btn btn-primary" type="button" id="Save" value="Save" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="messageWindow" class="noDisplay">
+    <div id="messageWindowHeader">
+        Message
+    </div>
+    <div id="messageWindowContent" class="m-10">
+    </div>
+</div>
+
+<div id="jqxLoader">
+</div>

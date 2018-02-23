@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ea537a5cca3c4e5b895f44ac792c354d" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="Model.Account" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Address" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AddressPurpose" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.EmailAddress" Width="1.5" PointX="6" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.EmailPurpose" Width="1.5" PointX="3.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Party" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Party_Organization" Width="1.5" PointX="3" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Party_Person" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PhonePurpose" Width="1.5" PointX="3.75" PointY="21.625" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Account_Party" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Address_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Address_AddressPurpose" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_EmailAddress_EmailPurpose" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_EmailAddress_Party" ManuallyRouted="false" />
+        <InheritanceConnector EntityType="Model.Party_Organization" />
+        <InheritanceConnector EntityType="Model.Party_Person" />
+        <EntityTypeShape EntityType="Model.PartyRole" Width="1.5" PointX="8" PointY="6.375" />
+        <EntityTypeShape EntityType="Model.PartyRoleType" Width="1.5" PointX="5.75" PointY="0.75" />
+        <AssociationConnector Association="Model.FK_PartyRole_Party" />
+        <AssociationConnector Association="Model.FK_PartyRole_PartyRole" />
+        <EntityTypeShape EntityType="Model.ModuleSchemaSetting" Width="1.5" PointX="6.375" PointY="3.75" />
+        <EntityTypeShape EntityType="Model.Registration" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="Model.FK_Registration_Party" />
+        <EntityTypeShape EntityType="Model.Phone" Width="1.5" PointX="6" PointY="14.75" />
+        <AssociationConnector Association="Model.FK_Phone_Party" />
+        <AssociationConnector Association="Model.FK_Phone_PhonePurpose" />
+        <EntityTypeShape EntityType="Model.Account_Master" Width="1.5" PointX="5.25" PointY="6.875" />
+        <AssociationConnector Association="Model.FK_Account_Master_Account" />
+        <EntityTypeShape EntityType="Model.Account_SECRM" Width="1.5" PointX="3" PointY="24.375" />
+        <AssociationConnector Association="Model.FK_Account_SECRM_Party" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

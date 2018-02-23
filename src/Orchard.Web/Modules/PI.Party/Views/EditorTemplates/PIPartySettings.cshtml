@@ -1,0 +1,83 @@
+﻿@using PI.Common.Helpers;
+@model PI.Party.Models.PIPartySettingsPart
+@{
+    ViewBag.Title = "PIPartySettings";
+}
+
+<h2>PI Party Settings</h2>
+
+<fieldset>
+    <div>
+        @Html.LabelFor(m => m.RedirectURL, @T("Redirect URL"))
+        @Html.TextBoxFor(m => m.RedirectURL, new { style = "width: 600px;"})
+        <h3>Connection String</h3>
+        @Html.LabelFor(m => m.MetadataString, @T("Metadata String"))
+        @Html.TextBoxFor(m => m.MetadataString, new { style = "width: 600px;", required="required", pattern = @".*\S+.*" ,title= "Requires at least one non-whitespace character" })
+        <br />
+        @Html.LabelFor(m => m.DataSource, @T("Data Source"))
+        @Html.TextBoxFor(m => m.DataSource, new { style = "width: 400px;", required = "required", pattern = @".*\S+.*", title = "Requires at least one non-whitespace character" })
+        <br />
+        @Html.LabelFor(m => m.Catalog, @T("Catalog"))
+        @Html.TextBoxFor(m => m.Catalog, new { style = "width: 300px;", required = "required", pattern = @".*\S+.*", title = "Requires at least one non-whitespace character" })
+        <br />
+        @Html.LabelFor(m => m.Username, @T("Username"))
+        @Html.TextBoxFor(m => m.Username, new { style = "width: 300px;", required = "required", pattern = @".*\S+.*", title = "Requires at least one non-whitespace character" })
+        <br />
+        @Html.LabelFor(m => m.Password, @T("Password"))
+        @Html.PasswordFor(m => m.Password, new { style = "width: 300px;", id="txtPassword" ,required = "required", pattern = @".*\S+.*", title = "Requires at least one non-whitespace character" })
+
+
+        <input id="hdnPassword" type="hidden" name="PI.hdnPartyPass" value="@StringEncryptionHelper.EncryptString(Model.Password, "PartyPass")" />
+
+    </div>
+</fieldset>
+
+
+<div id="saveMessageWindow">
+    <div id="saveMessageWindowHeader">
+        &nbsp;
+    </div>
+    <div id="saveMessageWindowContent">
+    </div>
+</div>
+
+<div id="jqxLoader">
+</div>
+@{
+    Script.Require("jQuery").AtHead();
+    Style.Require("jQxBase").AtHead();
+    Script.Require("jQxCore").AtHead();
+    Script.Require("jQxLoader").AtHead();
+    Script.Require("jQxWindow");
+    Script.Require("piPartySettings").AtHead();
+}
+
+<script>
+
+    Render_PIPartySettings = new PI_PartySettings();
+    Render_PIPartySettings.PIConnectionStringSettings();
+
+</script>
+
+<style>
+    .jqx-loader {
+        left: 0 !important;
+        right: 0 !important;
+        top: 0 !important;
+        background: #fff !important;
+    }
+
+    ul.ulError {
+        list-style-type: unset !important;
+        color: red;
+        padding-left: 10px;
+        margin-left: 5px;
+    }
+
+    ul.li {
+        margin-bottom: 5px;
+    }
+</style>
+
+
+

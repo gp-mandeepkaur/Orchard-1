@@ -1,0 +1,941 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartyId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Account_Master">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Account_SECRM">
+          <Key>
+            <PropertyRef Name="PartyId" />
+          </Key>
+          <Property Name="PartyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccountNumber" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartyId" Type="uniqueidentifier" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="250" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="250" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zip" Type="nvarchar" MaxLength="50" />
+          <Property Name="PurposeTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AddressPurpose">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EmailAddress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartyId" Type="uniqueidentifier" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="PurposeTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailPurpose">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ModuleSchemaSettings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleSchemaVersion" Type="varchar" MaxLength="50" />
+          <Property Name="DateSchemaUpdated" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Party">
+          <Key>
+            <PropertyRef Name="PartyId" />
+          </Key>
+          <Property Name="PartyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Party_Organization">
+          <Key>
+            <PropertyRef Name="PartyId" />
+          </Key>
+          <Property Name="PartyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrganizationName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Party_Person">
+          <Key>
+            <PropertyRef Name="PartyId" />
+          </Key>
+          <Property Name="PartyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Middlename" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="date" />
+        </EntityType>
+        <EntityType Name="PartyRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleTypeId" Type="int" Nullable="false" />
+          <Property Name="FromDate" Type="datetime" Nullable="false" />
+          <Property Name="ThruDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PartyRoleType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Phone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartyId" Type="uniqueidentifier" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="AreaCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneLine" Type="nvarchar" MaxLength="50" />
+          <Property Name="PurposeTypeID" Type="int" Nullable="false" />
+          <Property Name="PhoneExchange" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PhonePurpose">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegistrationTokenId" Type="uniqueidentifier" />
+          <Property Name="DateTimeCreated" Type="datetime" />
+          <Property Name="PartyId" Type="uniqueidentifier" />
+          <Property Name="LoginCreatedDate" Type="datetime" />
+          <Property Name="DateTimeTokenSent" Type="datetime" />
+          <Property Name="TokenCount" Type="int" />
+          <Property Name="RegistrationDenied" Type="bit" Nullable="false" />
+          <Property Name="ReasonForDenial" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_Account_Master_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Account_Master" Type="Self.Account_Master" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Account_Master">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_SECRM_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="1" />
+          <End Role="Account_SECRM" Type="Self.Account_SECRM" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="Account_SECRM">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Address_AddressPurpose">
+          <End Role="AddressPurpose" Type="Self.AddressPurpose" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressPurpose">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="PurposeTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Address_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailAddress_EmailPurpose">
+          <End Role="EmailPurpose" Type="Self.EmailPurpose" Multiplicity="1" />
+          <End Role="EmailAddress" Type="Self.EmailAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailPurpose">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailAddress">
+              <PropertyRef Name="PurposeTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailAddress_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+          <End Role="EmailAddress" Type="Self.EmailAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="EmailAddress">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Party_Organization_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Party_Organization" Type="Self.Party_Organization" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="Party_Organization">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Party_Person_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Party_Person" Type="Self.Party_Person" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="Party_Person">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartyRole_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="1" />
+          <End Role="PartyRole" Type="Self.PartyRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="PartyRole">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartyRole_PartyRole">
+          <End Role="PartyRoleType" Type="Self.PartyRoleType" Multiplicity="1" />
+          <End Role="PartyRole" Type="Self.PartyRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartyRoleType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PartyRole">
+              <PropertyRef Name="RoleTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phone_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+          <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phone_PhonePurpose">
+          <End Role="PhonePurpose" Type="Self.PhonePurpose" Multiplicity="1" />
+          <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhonePurpose">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="PurposeTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Account_Master" EntityType="Self.Account_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Account_SECRM" EntityType="Self.Account_SECRM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AddressPurpose" EntityType="Self.AddressPurpose" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailAddress" EntityType="Self.EmailAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailPurpose" EntityType="Self.EmailPurpose" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModuleSchemaSettings" EntityType="Self.ModuleSchemaSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Party" EntityType="Self.Party" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Party_Organization" EntityType="Self.Party_Organization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Party_Person" EntityType="Self.Party_Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartyRole" EntityType="Self.PartyRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartyRoleType" EntityType="Self.PartyRoleType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Phone" EntityType="Self.Phone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhonePurpose" EntityType="Self.PhonePurpose" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Account_Master_Account" Association="Self.FK_Account_Master_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Account_Master" EntitySet="Account_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_Party" Association="Self.FK_Account_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_SECRM_Party" Association="Self.FK_Account_SECRM_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Account_SECRM" EntitySet="Account_SECRM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Address_AddressPurpose" Association="Self.FK_Address_AddressPurpose">
+            <End Role="AddressPurpose" EntitySet="AddressPurpose" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Address_Party" Association="Self.FK_Address_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailAddress_EmailPurpose" Association="Self.FK_EmailAddress_EmailPurpose">
+            <End Role="EmailPurpose" EntitySet="EmailPurpose" />
+            <End Role="EmailAddress" EntitySet="EmailAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailAddress_Party" Association="Self.FK_EmailAddress_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="EmailAddress" EntitySet="EmailAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Party_Organization_Party" Association="Self.FK_Party_Organization_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Party_Organization" EntitySet="Party_Organization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Party_Person_Party" Association="Self.FK_Party_Person_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Party_Person" EntitySet="Party_Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartyRole_Party" Association="Self.FK_PartyRole_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="PartyRole" EntitySet="PartyRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartyRole_PartyRole" Association="Self.FK_PartyRole_PartyRole">
+            <End Role="PartyRoleType" EntitySet="PartyRoleType" />
+            <End Role="PartyRole" EntitySet="PartyRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_Party" Association="Self.FK_Phone_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Phone" EntitySet="Phone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_PhonePurpose" Association="Self.FK_Phone_PhonePurpose">
+            <End Role="PhonePurpose" EntitySet="PhonePurpose" />
+            <End Role="Phone" EntitySet="Phone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_Party" Association="Self.FK_Registration_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartyId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Party" Relationship="Self.FK_Account_Party" FromRole="Account" ToRole="Party" />
+        </EntityType>
+        <EntityType Name="Account_Master" BaseType="Model.Account">
+          <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartyId" Type="Guid" />
+          <Property Name="Address1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PurposeTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Party" Relationship="Self.FK_Address_Address" FromRole="Address" ToRole="Party" />
+          <NavigationProperty Name="AddressPurpose" Relationship="Self.FK_Address_AddressPurpose" FromRole="Address" ToRole="AddressPurpose" />
+        </EntityType>
+        <EntityType Name="AddressPurpose">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Address_AddressPurpose" FromRole="AddressPurpose" ToRole="Address" />
+        </EntityType>
+        <EntityType Name="EmailAddress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartyId" Type="Guid" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PurposeTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EmailPurpose" Relationship="Self.FK_EmailAddress_EmailPurpose" FromRole="EmailAddress" ToRole="EmailPurpose" />
+          <NavigationProperty Name="Party" Relationship="Self.FK_EmailAddress_Party" FromRole="EmailAddress" ToRole="Party" />
+        </EntityType>
+        <EntityType Name="EmailPurpose">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="EmailAddresses" Relationship="Self.FK_EmailAddress_EmailPurpose" FromRole="EmailPurpose" ToRole="EmailAddress" />
+        </EntityType>
+        <EntityType Name="Party">
+          <Key>
+            <PropertyRef Name="PartyId" />
+          </Key>
+          <Property Name="PartyId" Type="Guid" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Party" FromRole="Party" ToRole="Account" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Address_Address" FromRole="Party" ToRole="Address" />
+          <NavigationProperty Name="EmailAddresses" Relationship="Self.FK_EmailAddress_Party" FromRole="Party" ToRole="EmailAddress" />
+          <NavigationProperty Name="PartyRoles" Relationship="Model.FK_PartyRole_Party" FromRole="Party" ToRole="PartyRole" />
+          <NavigationProperty Name="Registrations" Relationship="Model.FK_Registration_Party" FromRole="Party" ToRole="Registration" />
+          <NavigationProperty Name="Phones" Relationship="Model.FK_Phone_Party" FromRole="Party" ToRole="Phone" />
+          <NavigationProperty Name="Account_SECRM" Relationship="Model.FK_Account_SECRM_Party" FromRole="Party" ToRole="Account_SECRM" />
+        </EntityType>
+        <EntityType Name="Party_Organization" BaseType="Model.Party">
+          <Property Name="OrganizationName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Party_Person" BaseType="Model.Party">
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="PhonePurpose">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Phones" Relationship="Model.FK_Phone_PhonePurpose" FromRole="PhonePurpose" ToRole="Phone" />
+        </EntityType>
+        <Association Name="FK_Account_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Address_Address">
+          <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Address_AddressPurpose">
+          <End Role="AddressPurpose" Type="Self.AddressPurpose" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressPurpose">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="PurposeTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailAddress_EmailPurpose">
+          <End Role="EmailPurpose" Type="Self.EmailPurpose" Multiplicity="1" />
+          <End Role="EmailAddress" Type="Self.EmailAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailPurpose">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EmailAddress">
+              <PropertyRef Name="PurposeTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailAddress_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+          <End Role="EmailAddress" Type="Self.EmailAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="EmailAddress">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PIPartyEF" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="AddressPurposes" EntityType="Self.AddressPurpose" />
+          <EntitySet Name="EmailAddresses" EntityType="Self.EmailAddress" />
+          <EntitySet Name="EmailPurposes" EntityType="Self.EmailPurpose" />
+          <EntitySet Name="Parties" EntityType="Self.Party" />
+          <EntitySet Name="PhonePurposes" EntityType="Self.PhonePurpose" />
+          <AssociationSet Name="FK_Account_Party" Association="Self.FK_Account_Party">
+            <End Role="Party" EntitySet="Parties" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Address_Address" Association="Self.FK_Address_Address">
+            <End Role="Party" EntitySet="Parties" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Address_AddressPurpose" Association="Self.FK_Address_AddressPurpose">
+            <End Role="AddressPurpose" EntitySet="AddressPurposes" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailAddress_EmailPurpose" Association="Self.FK_EmailAddress_EmailPurpose">
+            <End Role="EmailPurpose" EntitySet="EmailPurposes" />
+            <End Role="EmailAddress" EntitySet="EmailAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailAddress_Party" Association="Self.FK_EmailAddress_Party">
+            <End Role="Party" EntitySet="Parties" />
+            <End Role="EmailAddress" EntitySet="EmailAddresses" />
+          </AssociationSet>
+          <EntitySet Name="PartyRoles" EntityType="Model.PartyRole" />
+          <EntitySet Name="PartyRoleTypes" EntityType="Model.PartyRoleType" />
+          <AssociationSet Name="FK_PartyRole_Party" Association="Model.FK_PartyRole_Party">
+            <End Role="Party" EntitySet="Parties" />
+            <End Role="PartyRole" EntitySet="PartyRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PartyRole_PartyRole" Association="Model.FK_PartyRole_PartyRole">
+            <End Role="PartyRoleType" EntitySet="PartyRoleTypes" />
+            <End Role="PartyRole" EntitySet="PartyRoles" />
+          </AssociationSet>
+          <EntitySet Name="ModuleSchemaSettings" EntityType="Model.ModuleSchemaSetting" />
+          <EntitySet Name="Registrations" EntityType="Model.Registration" />
+          <AssociationSet Name="FK_Registration_Party" Association="Model.FK_Registration_Party">
+            <End Role="Party" EntitySet="Parties" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <EntitySet Name="Phones" EntityType="Model.Phone" />
+          <AssociationSet Name="FK_Phone_Party" Association="Model.FK_Phone_Party">
+            <End Role="Party" EntitySet="Parties" />
+            <End Role="Phone" EntitySet="Phones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_PhonePurpose" Association="Model.FK_Phone_PhonePurpose">
+            <End Role="PhonePurpose" EntitySet="PhonePurposes" />
+            <End Role="Phone" EntitySet="Phones" />
+          </AssociationSet>
+          <EntitySet Name="Account_SECRM" EntityType="Model.Account_SECRM" />
+          <AssociationSet Name="FK_Account_SECRM_Party" Association="Model.FK_Account_SECRM_Party">
+            <End Role="Party" EntitySet="Parties" />
+            <End Role="Account_SECRM" EntitySet="Account_SECRM" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PartyRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartyId" Type="Guid" Nullable="false" />
+          <Property Name="RoleTypeId" Type="Int32" Nullable="false" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ThruDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Party" Relationship="Model.FK_PartyRole_Party" FromRole="PartyRole" ToRole="Party" />
+          <NavigationProperty Name="PartyRoleType" Relationship="Model.FK_PartyRole_PartyRole" FromRole="PartyRole" ToRole="PartyRoleType" />
+        </EntityType>
+        <EntityType Name="PartyRoleType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PartyRoles" Relationship="Model.FK_PartyRole_PartyRole" FromRole="PartyRoleType" ToRole="PartyRole" />
+        </EntityType>
+        <Association Name="FK_PartyRole_Party">
+          <End Type="Model.Party" Role="Party" Multiplicity="1" />
+          <End Type="Model.PartyRole" Role="PartyRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="PartyRole">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PartyRole_PartyRole">
+          <End Type="Model.PartyRoleType" Role="PartyRoleType" Multiplicity="1" />
+          <End Type="Model.PartyRole" Role="PartyRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartyRoleType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PartyRole">
+              <PropertyRef Name="RoleTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ModuleSchemaSetting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleSchemaVersion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateSchemaUpdated" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationTokenId" Type="Guid" />
+          <Property Name="DateTimeCreated" Type="DateTime" Precision="3" />
+          <Property Name="PartyId" Type="Guid" />
+          <Property Name="LoginCreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="DateTimeTokenSent" Type="DateTime" Precision="3" />
+          <Property Name="TokenCount" Type="Int32" />
+          <Property Name="RegistrationDenied" Type="Boolean" Nullable="false" />
+          <Property Name="ReasonForDenial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Party" Relationship="Model.FK_Registration_Party" FromRole="Registration" ToRole="Party" />
+        </EntityType>
+        <Association Name="FK_Registration_Party">
+          <End Type="Model.Party" Role="Party" Multiplicity="0..1" />
+          <End Type="Model.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Phone">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartyId" Type="Guid" />
+          <Property Name="CountryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AreaCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneLine" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PurposeTypeID" Type="Int32" Nullable="false" />
+          <Property Name="PhoneExchange" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Party" Relationship="Model.FK_Phone_Party" FromRole="Phone" ToRole="Party" />
+          <NavigationProperty Name="PhonePurpose" Relationship="Model.FK_Phone_PhonePurpose" FromRole="Phone" ToRole="PhonePurpose" />
+        </EntityType>
+        <Association Name="FK_Phone_Party">
+          <End Type="Model.Party" Role="Party" Multiplicity="0..1" />
+          <End Type="Model.Phone" Role="Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phone_PhonePurpose">
+          <End Type="Model.PhonePurpose" Role="PhonePurpose" Multiplicity="1" />
+          <End Type="Model.Phone" Role="Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PhonePurpose">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="PurposeTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Account_SECRM">
+          <Key>
+            <PropertyRef Name="PartyId" />
+          </Key>
+          <Property Name="PartyId" Type="Guid" Nullable="false" />
+          <Property Name="AccountNumber" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Party" Relationship="Model.FK_Account_SECRM_Party" FromRole="Account_SECRM" ToRole="Party" />
+        </EntityType>
+        <Association Name="FK_Account_SECRM_Party">
+          <End Type="Model.Party" Role="Party" Multiplicity="1" />
+          <End Type="Model.Account_SECRM" Role="Account_SECRM" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="PartyId" />
+            </Principal>
+            <Dependent Role="Account_SECRM">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="PIPartyEF">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.Account)">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(Model.Account_Master)">
+              <MappingFragment StoreEntitySet="Account_Master">
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="Model.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="PurposeTypeID" ColumnName="PurposeTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AddressPurposes">
+            <EntityTypeMapping TypeName="Model.AddressPurpose">
+              <MappingFragment StoreEntitySet="AddressPurpose">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailAddresses">
+            <EntityTypeMapping TypeName="Model.EmailAddress">
+              <MappingFragment StoreEntitySet="EmailAddress">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PurposeTypeID" ColumnName="PurposeTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailPurposes">
+            <EntityTypeMapping TypeName="Model.EmailPurpose">
+              <MappingFragment StoreEntitySet="EmailPurpose">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parties">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.Party)">
+              <MappingFragment StoreEntitySet="Party">
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(Model.Party_Organization)">
+              <MappingFragment StoreEntitySet="Party_Organization">
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(Model.Party_Person)">
+              <MappingFragment StoreEntitySet="Party_Person">
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Middlename" ColumnName="Middlename" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhonePurposes">
+            <EntityTypeMapping TypeName="Model.PhonePurpose">
+              <MappingFragment StoreEntitySet="PhonePurpose">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartyRoles">
+            <EntityTypeMapping TypeName="Model.PartyRole">
+              <MappingFragment StoreEntitySet="PartyRole">
+                <ScalarProperty Name="ThruDate" ColumnName="ThruDate" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="RoleTypeId" ColumnName="RoleTypeId" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartyRoleTypes">
+            <EntityTypeMapping TypeName="Model.PartyRoleType">
+              <MappingFragment StoreEntitySet="PartyRoleType">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModuleSchemaSettings">
+            <EntityTypeMapping TypeName="Model.ModuleSchemaSetting">
+              <MappingFragment StoreEntitySet="ModuleSchemaSettings">
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="DateSchemaUpdated" ColumnName="DateSchemaUpdated" />
+                <ScalarProperty Name="ModuleSchemaVersion" ColumnName="ModuleSchemaVersion" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registrations">
+            <EntityTypeMapping TypeName="Model.Registration">
+              <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="ReasonForDenial" ColumnName="ReasonForDenial" />
+                <ScalarProperty Name="RegistrationDenied" ColumnName="RegistrationDenied" />
+                <ScalarProperty Name="TokenCount" ColumnName="TokenCount" />
+                <ScalarProperty Name="DateTimeTokenSent" ColumnName="DateTimeTokenSent" />
+                <ScalarProperty Name="LoginCreatedDate" ColumnName="LoginCreatedDate" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="DateTimeCreated" ColumnName="DateTimeCreated" />
+                <ScalarProperty Name="RegistrationTokenId" ColumnName="RegistrationTokenId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Phones">
+            <EntityTypeMapping TypeName="Model.Phone">
+              <MappingFragment StoreEntitySet="Phone">
+                <ScalarProperty Name="PhoneExchange" ColumnName="PhoneExchange" />
+                <ScalarProperty Name="PurposeTypeID" ColumnName="PurposeTypeID" />
+                <ScalarProperty Name="PhoneLine" ColumnName="PhoneLine" />
+                <ScalarProperty Name="AreaCode" ColumnName="AreaCode" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Account_SECRM">
+            <EntityTypeMapping TypeName="Model.Account_SECRM">
+              <MappingFragment StoreEntitySet="Account_SECRM">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

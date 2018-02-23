@@ -1,0 +1,12 @@
+﻿Name: PI.Party
+AntiForgery: enabled
+Author: The Pioneers Team
+Website: http://pioneers.org
+Version: 1.1.2.0
+OrchardVersion: 1.10.2
+Description: Stores the information of the registered user
+Features:
+    PI.Party:
+        Description: Stores the information of the registered user
+		Category: PI
+		Dependencies: PI.Common
